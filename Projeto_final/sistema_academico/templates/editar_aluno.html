@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<br>
+<div>
+    <h1 class="bg-gray-200 h-50px w-">Editar Aluno</h1>
+    <form method="post">
+    {% csrf_token %}
+    <label for="nome">Nome</label>
+    <input value="{{alunos.nome}}" type="text" name="nome">
+    <label for="matricula">Matricula</label>
+    <input value="{{alunos.matricula}}" type="text" name="matricula">
+    <label for="telefone">Telefone</label>
+    <input value="{{alunos.telefone}}" type="text" name="telefone">
+    <button type="submit" class="btn">Salvar</button>
+    </form>
+  <a href="{% url 'home' %}">Voltar para a lista de Alunos</a>
+</div>
+  
+{% endblock %}

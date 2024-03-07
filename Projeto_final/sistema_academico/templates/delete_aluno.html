@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<br>
+<div>
+    <h1 class="bg-gray-200 h-50px w-">Remover Aluno</h1>
+  <form method="POST">
+    {% csrf_token %}
+    <p>Tem certeza de que deseja Aluno(a){{ alunos.nome }}?</p>
+    <button type="submit" class="btn">Sim, remover</button>
+  </form>
+  <a href="{% url 'home' %}">Voltar para a lista de produtos</a>
+</div>
+  
+{% endblock %}
