@@ -24,4 +24,20 @@ def editar_aluno(request, id):
         alunos.save()
         return redirect('home')
     return render(request, 'editar_aluno.html', {'alunos': alunos})
+from django.shortcuts import render, redirect
+from .models import Aluno
+
+def adicionar_aluno(request):
+    if request.method == "POST":
+        nome = request.POST['nome']
+        matricula = request.POST['matricula']
+        telefone = request.POST['telefone']
+        cpf = request.POST['cpf']
+        endereco = request.POST['endereco']
+        email = request.POST['email']
+        data_nascimento = request.POST['data_nascimento']
+        Aluno.objects.create(nome=nome, matricula=matricula, telefone=telefone,cpf=cpf,endereco=endereco,data_nascimento=data_nascimento,email=email)
+        return redirect('home')
+    return render(request, 'adicionar_aluno.html')
+
 

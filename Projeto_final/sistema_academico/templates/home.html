@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
+
 <h1 class="mx-auto text-black text-center font-bold">Alunos</h1>
+<div class="flex items-center">
+  <a href="{% url 'adicionar_aluno' %}" class="btn bg-blue-700 hover:bg-blue-500 text-white rounded p-2 ">Adicionar Aluno</a>
+</div>
+
 <table class="min-w-full divide-y divide-gray-200 bg-white shadow overflow-hidden sm:rounded-lg">
     <thead class="bg-gray-200">
       <tr>
