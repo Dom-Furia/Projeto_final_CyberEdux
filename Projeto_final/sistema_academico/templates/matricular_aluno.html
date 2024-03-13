@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Matricular Aluno</h1>
+<div>
+    <form method="post">
+        {% csrf_token %}
+        <div>
+            <label for="aluno">Selecione o Aluno:</label>
+            <select name="aluno" id="aluno">
+                {% for aluno in alunos %}
+                    <option value="{{ aluno.id }}">{{ aluno.nome }}</option>
+                {% endfor %}
+            </select>
+        </div>
+       <div>
+        <label for="curso">Selecione o Curso:</label>
+        <select name="curso" id="curso">
+            {% for curso in cursos %}
+                <option value="{{ curso.id }}">{{ curso.nome }}</option>
+            {% endfor %}
+        </select>
+       </div>
+       <div>
+        <button type="submit">Matricular Aluno</button>
+       </div>
+        
+    </form>
+</div>
+
+
+
+
+
+
+
+
+{% endblock %}

@@ -3,15 +3,24 @@
 <br>
 <div>
     <h1 class="bg-gray-200 h-50px w-">Editar Aluno</h1>
-    <form method="post">
+    <form method="post" class="bg-gray-100 shadow-md rounded px-8 pt-6 pb-8 mb-4">
     {% csrf_token %}
-    <label for="nome">Nome</label>
-    <input value="{{alunos.nome}}" type="text" name="nome">
+    <div class="mb-4">
+      <label for="nome">Nome</label>
+      <input value="{{alunos.nome}}" type="text" name="nome">
+    </div>
+   <div class="mb-4">
     <label for="matricula">Matricula</label>
     <input value="{{alunos.matricula}}" type="text" name="matricula">
-    <label for="telefone">Telefone</label>
-    <input value="{{alunos.telefone}}" type="text" name="telefone">
-    <button type="submit" class="btn">Salvar</button>
+   </div>
+    <div class="mb-4">
+      <label for="telefone">Telefone</label>
+      <input value="{{alunos.telefone}}" type="text" name="telefone">
+    </div>
+    <div class="mb-4">
+      <button type="submit" class="btn">Salvar</button>
+    </div>
+   
     </form>
   <a href="{% url 'home' %}">Voltar para a lista de Alunos</a>
 </div>
