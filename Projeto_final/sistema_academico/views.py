@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 from django.http import HttpResponse
 from .models import Aluno, Curso, Departamento, Professor, Matricula
+from django.contrib import messages
 
 def home(request):
     alunos_cursos = Aluno.objects.prefetch_related('matriculas__curso').all()
@@ -38,10 +39,32 @@ def adicionar_aluno(request):
         Aluno.objects.create(nome=nome, matricula=matricula, telefone=telefone,cpf=cpf,endereco=endereco,data_nascimento=data_nascimento,email=email)
         return redirect('home')
     return render(request, 'adicionar_aluno.html')
+
+def criar_curso(request):
+    cursos = Curso.objects.all()
+    if request.method == "POST":
+        nome = request.POST.get('nome')
+        descricao = request.POST.get('descricao')
+        if cursos.filter(nome=nome).exists():
+            messages.error(request, 'Já existe um curso com este nome.')
+            return redirect('criar_curso')
+        else:
+            try:
+                cursos.create(nome=nome, descricao=descricao,duracao=50,coordenador='Felipe',carga_horaria=120)
+                messages.success(request, 'Curso criado com sucesso!')
+                return redirect('criar_curso')
+            except Exception as e:
+                messages.error(request, f'Erro ao criar curso: {e}')
+                return redirect('criar_curso')
+            
+    return render(request, 'criar_curso.html', {'cursos':cursos})
+
+
 def listar_cursos_e_departamentos(request):
     todos_os_cursos = Curso.objects.all()
     todos_os_departamentos = Departamento.objects.all()
     return render(request, 'lista_cursos_departamentos.html', {'cursos': todos_os_cursos, 'departamentos': todos_os_departamentos})
+
 
 def matricular_aluno(request):
     if request.method == 'POST':

@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block content %}
+<div>
+  <h1 class="mx-auto text-black">Criar Curso</h1>
+  <div>
+    <form method="POST" class="bg-gray-100 shadow-md rounded px-8 pt-6 pb-8 mb-4 divide-y divide-gray-200">
+      {% csrf_token %}
+      <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome"><br>
+        <label for="descricao">Descrição:</label>
+        <input type="text" id="descricao" name="descricao"><br>
+        <!--<label for="coordenador">Coordenador:</label>
+        <input type="text" id="coordenador" name="coordenador"><br>
+        -->
+      <div class="flex items-center justify-between py-4">
+        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          Adicionar
+        </button>
+      </div>
+    </form>
+    <div>
+      {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            {% if message.tags == 'error' %}
+                <li class="text-lime-500 font-bold">{{ message }}</li>
+            {% elif message.tags == 'success' %}
+                <li class="text-red-500 font-bold">{{ message }}</li>
+            {% elif message.tags == 'warning' %}
+                <li class="warning-message">{{ message }}</li>
+            {% elif message.tags == 'info' %}
+                <li class="info-message">{{ message }}</li>
+            {% else %}
+                <li>{{ message }}</li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+{% endif %}
+
+
+    </div>
+    
+    <h1 class="mx-auto text-black">Lista de Cursos</h1>
+    <table class="min-w-full divide-y divide-gray-200 bg-white shadow overflow-hidden sm:rounded-lg">
+        <thead class="bg-gray-200">
+          <tr>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nome</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Descrição</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Coordenador</th>
+        </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200">
+          {% for curso in cursos %}
+            <tr>
+              <td class="px-6 py-4 whitespace-nowrap">{{ curso.nome }}</td>
+              <td class="px-6 py-4 whitespace-nowrap">{{ curso.descricao }}</td> 
+              <td class="px-6 py-4 whitespace-nowrap">{{ curso.coordenador }}</td>   
+            </tr>
+          {% empty %}
+            <tr>
+              <td colspan="5" class="px-6 py-4 whitespace-nowrap">Nenhum Curso encontrado.</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+  
+  </div>
+  
+  <a href="{% url 'home' %}" class="text-blue-500 underline">Voltar para pagina inicial</a>
+</div>
+ 
+{% endblock %}
