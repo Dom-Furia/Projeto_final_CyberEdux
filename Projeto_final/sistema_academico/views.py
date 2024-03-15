@@ -73,15 +73,18 @@ def matricular_aluno(request):
         
         aluno = Aluno.objects.get(id=aluno_id)
         curso = Curso.objects.get(id=curso_id)
-        
-        # Verificar se o aluno já está matriculado no curso
-        if Matricula.objects.filter(aluno=aluno, curso=curso).exists():
-            return render(request, 'erro_matriculado', {'mensagem': 'Aluno já está matriculado neste curso'})
-        
-        # Se não estiver matriculado, criar uma nova matrícula
-        Matricula.objects.create(aluno=aluno, curso=curso)
-        
-        return redirect('home.html', aluno_id=aluno_id)
+
+        if  Matricula.objects.filter(aluno=aluno, curso=curso).exists():
+            messages.error(request, 'Este aluno (a) ja esta matriculado (a) neste curso.')
+            return redirect('matricular_aluno')
+        else:
+            try:
+                Matricula.objects.create(aluno=aluno, curso=curso)
+                messages.success(request, 'Aluno (a) matriculado com sucesso!')
+                return redirect('matricular_aluno')
+            except Exception as e:
+                messages.error(request, f'Erro ao matricular aluno (a): {e}')
+                return redirect('home')
     else:
         alunos = Aluno.objects.all()
         cursos = Curso.objects.all()

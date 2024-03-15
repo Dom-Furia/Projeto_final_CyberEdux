@@ -1,46 +1,49 @@
 {% extends 'base.html' %}
 {% block content %}
-<div>
-  <h1 class="mx-auto text-black">Criar Curso</h1>
-  <div>
-    <form method="POST" class="bg-gray-100 shadow-md rounded px-8 pt-6 pb-8 mb-4 divide-y divide-gray-200">
+  
+    <form method="POST" class="bg-gray-100 shadow-md rounded px-8 pt-6 pb-8 mb-4  divide-gray-200">
       {% csrf_token %}
-      <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="nome"><br>
-        <label for="descricao">Descrição:</label>
-        <input type="text" id="descricao" name="descricao"><br>
+      <div>
+        <h1 class="mx-auto text-black font-bold mb-4">Criar Curso</h1>
+        </div>
+      <label for="nome" class="block text-gray-700">Nome:</label>
+        <input type="text" id="nome" name="nome" class="w-1/2"><br>
+        <label for="descricao" class="block text-gray-700">Descrição:</label>
+        <input type="text" id="descricao" name="descricao" class="w-1/2"><br>
         <!--<label for="coordenador">Coordenador:</label>
         <input type="text" id="coordenador" name="coordenador"><br>
         -->
       <div class="flex items-center justify-between py-4">
-        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
           Adicionar
         </button>
       </div>
+      <br>
+      <div>
+        {% if messages %}
+      <ul class="messages">
+          {% for message in messages %}
+              {% if message.tags == 'error' %}
+                  <li class="text-red-500 font-bold">{{ message }}</li>
+              {% elif message.tags == 'success' %}
+                  <li class="text-green-500 font-bold">{{ message }}</li>
+              {% elif message.tags == 'warning' %}
+                  <li class="text-blue-500 font-bold">{{ message }}</li>
+              {% elif message.tags == 'info' %}
+                  <li class="text-yellow-500 font-bold">{{ message }}</li>
+              {% else %}
+                  <li>{{ message }}</li>
+              {% endif %}
+          {% endfor %}
+      </ul>
+      {% endif %}
+  
+  
+      </div>
     </form>
-    <div>
-      {% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-            {% if message.tags == 'error' %}
-                <li class="text-lime-500 font-bold">{{ message }}</li>
-            {% elif message.tags == 'success' %}
-                <li class="text-red-500 font-bold">{{ message }}</li>
-            {% elif message.tags == 'warning' %}
-                <li class="warning-message">{{ message }}</li>
-            {% elif message.tags == 'info' %}
-                <li class="info-message">{{ message }}</li>
-            {% else %}
-                <li>{{ message }}</li>
-            {% endif %}
-        {% endfor %}
-    </ul>
-{% endif %}
-
-
-    </div>
     
-    <h1 class="mx-auto text-black">Lista de Cursos</h1>
+    
+    
     <table class="min-w-full divide-y divide-gray-200 bg-white shadow overflow-hidden sm:rounded-lg">
         <thead class="bg-gray-200">
           <tr>
@@ -62,11 +65,11 @@
             </tr>
           {% endfor %}
         </tbody>
+      </div>
+      <a href="{% url 'home' %}" class="text-blue-500 underline">Voltar para pagina inicial</a>
+    </div>
       </table>
   
-  </div>
-  
-  <a href="{% url 'home' %}" class="text-blue-500 underline">Voltar para pagina inicial</a>
-</div>
+ 
  
 {% endblock %}

@@ -2,7 +2,7 @@
 {% block content %}
 
 <h1 class="mx-auto text-black text-center font-bold">Alunos</h1>
-<div class="flex items-center space-x-2">
+<div class="flex items-center space-x-2 mb-4">
   <a href="{% url 'adicionar_aluno' %}" class="btn bg-blue-700 hover:bg-blue-500 text-white rounded p-2 ">Adicionar Aluno</a>
   <a href="{% url 'criar_curso' %}" class="btn bg-blue-700 hover:bg-blue-500 text-white rounded p-2 ">Criar Curso</a>
   <a href="#" class="btn bg-blue-700 hover:bg-blue-500 text-white rounded p-2 ">Criar Departamento</a>
@@ -27,6 +27,7 @@
           <td class="px-6 py-4 whitespace-nowrap">
             {% for matricula in aluno.matriculas.all %}
               {{ matricula.curso.nome }}
+              <br>
             {% endfor %}
           </td>
 
