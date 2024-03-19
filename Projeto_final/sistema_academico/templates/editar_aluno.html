@@ -20,10 +20,12 @@
           <label for="telefone" class="block text-gray-700">Telefone:</label>
           <input value="{{alunos.telefone}}" type="text" name="telefone" class="w-1/2">
         </div>
-        <div class="mb-4">
+        <div class="mb-4 space-x-5">
           <button type="submit" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Salvar</button>
+          <a href="{% url 'home' %}" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded inline-block">Voltar   
+          </a>
         </div>
-        <a href="{% url 'home' %}" class="text-blue-700 underline">Voltar para a lista de Alunos</a>
+        
     </form>
     
   

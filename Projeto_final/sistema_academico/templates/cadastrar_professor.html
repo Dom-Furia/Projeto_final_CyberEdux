@@ -30,10 +30,17 @@
             <input type="text" id="telefone" name="telefone" class="w-1/2"><br>
         </div>
 
-        <div class="flex items-center justify-between py-4">
-            <button type="submit" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-            Adicionar
-            </button>
+        <div class="flex py-2 space-x-10">
+            <div>
+                <button type="submit" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                    Adicionar
+                </button>
+            </div>
+
+            <div class="flex">
+                <a href="{% url 'home' %}" class=" text-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-10 rounded ">Voltar   
+                </a>
+            </div>            
         </div>
     <div>
         {% if messages %}
@@ -55,7 +62,6 @@
       {% endif %}
     </div>
     </div>
-    <a href="{% url 'home' %}" class="text-blue-500 underline">Voltar para pagina inicial</a>
 </form>
 
 <table class="min-w-full divide-y divide-gray-200 bg-white shadow overflow-hidden sm:rounded-lg">
@@ -75,7 +81,7 @@
         </tr>
       {% empty %}
         <tr>
-          <td colspan="5" class="px-6 py-4 whitespace-nowrap">Nenhum Curso encontrado.</td>
+          <td colspan="5" class="px-6 py-4 whitespace-nowrap">Nenhum professor encontrado.</td>
         </tr>
       {% endfor %}
     </tbody>

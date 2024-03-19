@@ -1,14 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
 <br>
-<div>
-    <h1 class="bg-gray-200 h-50px w-">Remover Aluno</h1>
-  <form method="POST">
+<div class="flex justify-center bg-gray-100 rounded-lg"> 
+  <form method="POST" class=" justify-center-items-center mt-5mx-2">
     {% csrf_token %}
-    <p>Tem certeza de que deseja Aluno(a){{ alunos.nome }}?</p>
-    <button type="submit" class="btn">Sim, remover</button>
+    <div>
+      <p class="font-bold font-medium  text-center mt-5 mb-10 text-red-500">Tem certeza de que deseja Aluno(a) {{ alunos.nome }} ?</p>
+    </div>
+    <div class="space-x-5 text-center mt-10 mb-5">
+        <button type="submit" class="bg-red-700 hover:bg-red-600 text-white font-bold py-2 px-10 rounded">Sim</button>
+        <a href="{% url 'home' %}" class="bg-blue-700 hover:bg-blue-600 text-white font-bold py-3 px-10 rounded mb-5">Não</a>
+    </div>
   </form>
-  <a href="{% url 'home' %}">Voltar para a lista de produtos</a>
 </div>
   
 {% endblock %}

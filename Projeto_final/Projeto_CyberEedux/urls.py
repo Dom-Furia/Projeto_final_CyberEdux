@@ -13,5 +13,6 @@ urlpatterns = [
     path('criar_curso/', views.criar_curso, name='criar_curso'),
     path('cadastrar_professor/',views.cadastrar_Professor, name='cadastrar_professor'),
     path('cadastrar_departamento/',views.Cadastrar_departamento, name='cadastrar_departamento'),
+    path('ver_aluno/<int:id>/', views.ver_aluno, name='ver_aluno'),
 
 ]

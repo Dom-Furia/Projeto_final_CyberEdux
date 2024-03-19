@@ -60,6 +60,11 @@ def criar_curso(request):
             
     return render(request, 'criar_curso.html', {'cursos':cursos})
 
+def ver_aluno(request, id):
+    aluno = Aluno.objects.prefetch_related('matriculas__curso').get(id=id)
+    return render(request, 'ver_aluno.html', {'aluno': aluno})
+
+
 
 def listar_cursos_e_departamentos(request):
     todos_os_cursos = Curso.objects.all()

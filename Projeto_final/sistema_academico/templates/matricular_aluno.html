@@ -1,52 +1,62 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="flex mx-auto">
-    <div>
-        <form method="post" class="bg-gray-200 shadow-md rounded px-8 pt-6 pb-8 mb-4 divide-gray-200">
-            {% csrf_token %}
-            <div>
-                <label for="aluno" class="block text-gray-700">Selecione o Aluno:</label>
-                <select name="aluno" id="aluno" class="w-1/2 bg-white">
-                    {% for aluno in alunos %}
-                        <option value="{{ aluno.id }}">{{ aluno.nome }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-           <div>
-            <label for="curso" class="block text-gray-700">Selecione o Curso:</label>
-            <select name="curso" id="curso" class="w-1/2 bg-white">
-                {% for curso in cursos %}
-                    <option value="{{ curso.id }}">{{ curso.nome }}</option>
+
+<div class="mt-10">
+    <form method="post" class="bg-gray-200 shadow-md rounded px-8 pt-6 pb-8 mb-4 divide-gray-200">
+        {% csrf_token %}
+        <div class="flex justify-center mt-4 mb-5">
+            <h1 class="font-bold">Matricular aluno</h1>
+        </div>
+        <div class="mb-5">
+            <label for="aluno" class="block text-gray-700">Selecione o Aluno:</label>
+            <select name="aluno" id="aluno" class="w-1/2 bg-white py-1 px-3">
+                {% for aluno in alunos %}
+                    <option value="{{ aluno.id }}">{{ aluno.nome }}</option>
                 {% endfor %}
             </select>
-           </div>
-           <br>
-           <div>
-            <button type="submit" class="btn bg-green-600 hover:bg-green-500 text-white rounded p-2 ">Matricular Aluno</button>
-           </div>
-           <br>
-           <div>
-            {% if messages %}
-          <ul class="messages">
-              {% for message in messages %}
-                  {% if message.tags == 'error' %}
-                      <li class="text-red-500 font-bold">{{ message }}</li>
-                  {% elif message.tags == 'success' %}
-                      <li class="text-green-500 font-bold">{{ message }}</li>
-                  {% else %}
-                      <li>{{ message }}</li>
-                  {% endif %}
-              {% endfor %}
-          </ul>
-          {% endif %}
-      
-          </div>
-          <a href="{% url 'home' %}" class="text-blue-500 underline">Voltar para pagina inicial</a>
-        </form>
-    </div>
+        </div>
+        <div>
+        <label for="curso" class="block text-gray-700">Selecione o Curso:</label>
+        <select name="curso" id="curso" class="w-1/2 bg-white py-1 px-3">
+            {% for curso in cursos %}
+                <option value="{{ curso.id }}">{{ curso.nome }}</option>
+            {% endfor %}
+        </select>
+        </div>
+        <br>
+        <div class="flex space-x-10 p-2">
+            <div>
+                <button type="submit" class="btn bg-green-600 hover:bg-green-500 text-white rounded py-2 px-10 text-center font-bold ">Salvar</button>
+            </div>
+        
+            <div class="flex">
+                <a href="{% url 'home' %}" class=" text-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-10 rounded ">Voltar   
+                </a>
+            </div>
+        </div>
+        <br>
+        <div>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                {% if message.tags == 'error' %}
+                    <li class="text-red-500 font-bold">{{ message }}</li>
+                {% elif message.tags == 'success' %}
+                    <li class="text-green-500 font-bold">{{ message }}</li>
+                {% else %}
+                    <li>{{ message }}</li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+        {% endif %}
     
+        </div>
+            
+    </form>
 </div>
+    
+
 
 
 {% endblock %}
