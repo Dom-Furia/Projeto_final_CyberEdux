@@ -89,7 +89,6 @@ def matricular_aluno(request):
             try:
                 Matricula.objects.create(aluno=aluno, curso=curso)
                 messages.success(request, 'Aluno (a) matriculado com sucesso!')
-                Matricula.objects.save()
                 return redirect('matricular_aluno')
             except Exception as e:
                 messages.error(request, f'Erro ao matricular aluno (a): {e}')

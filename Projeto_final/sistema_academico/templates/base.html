@@ -1,20 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
+{% load static %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GCE</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
 </head>
-<body>
-    <div class="mx-auto my-auto bg-white mt-1">
-        <div class="flex justify-center items-center bg-blue-300 font-bold p-9 shadow-md rounded">
-            <img src="" alt="">
-            <h1>Sistema de Gestão Academica</h1>
-        </div>
-        
+<body class="flex flex-col h-screen">
+    <section>
+        <div class="bg-gradient-to-b from-blue-700 via-blue-400 to-blue-600 font-bold p-4 shadow-md">
+            <img src="{% static 'img/sga.png' %}" alt="Descriçã da Imagem" width="200px" >
+            <h1 class="text-white">Sistema de Gestão Academica</h1>
+        </div>        
+    </section>
+    <div class="flex-grow">
         {% block content %}
         {% endblock %}
+    </div>
+    <div>
+        <footer class="bg-yellow-500 text-white text-center py-2 w-screen">
+            <p class="">&copy; 2024 Meu Site. Todos os direitos reservados.</p>
+        </footer>
     </div>
     
 </body>

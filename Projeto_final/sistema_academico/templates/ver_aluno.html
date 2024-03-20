@@ -1,14 +1,18 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<table class="mt-10 min-w-full divide-y divide-gray-200 bg-white shadow overflow-hidden sm:rounded-lg text-center">
-    <thead class="bg-gray-200">
-        <tr>
+<table class="container mt-10 mx-auto divide-y divide-gray-400 bg-white shadow overflow-hidden sm:rounded-lg text-center">
+    <thead class="divide-y divide-gray-400">
+        <tr class="bg-yellow-500">
             <th colspan="10" class="px-6 py-3">
                 <h1 class="font-medium font-bold">Disciplinas Matriculadas</h1>
             </th>
         </tr>
-        <tr >
+        <tr class="bg-yellow-200">
+            <th class="px-6 py-3  text-xs font-medium text-gray-700 uppercase tracking-wider">Ano</th>
+            <th class="px-6 py-3  text-xs font-medium text-gray-700 uppercase tracking-wider">Código</th>
+            <th class="px-6 py-3  text-xs font-medium text-gray-700 uppercase tracking-wider">Nome</th>
+            <th class="px-6 py-3  text-xs font-medium text-gray-700 uppercase tracking-wider">Carga Horaria</th>
           <th class="px-6 py-3  text-xs font-medium text-gray-700 uppercase tracking-wider">Nome</th>
           <th class="px-6 py-3  text-xs font-medium text-gray-700 uppercase tracking-wider">Carga Horaria</th>
           <th class="px-6 py-3  text-xs font-medium text-gray-700 uppercase tracking-wider">Duração</th>
@@ -23,10 +27,12 @@
             </tr>
         {% endfor %}
     </tbody>
+    
 </table>
-<div class="flex">
+<div class="flex container mx-auto">
     <a href="{% url 'home' %}" class=" text-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-10 rounded mt-5">Voltar   
     </a>
 </div>
+
 
 {% endblock %}

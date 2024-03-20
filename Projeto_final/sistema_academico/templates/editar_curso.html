@@ -1,35 +1,35 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<form method="POST" class="bg-gray-200 shadow-md rounded px-8 pt-6 pb-8 mb-4 mt-6">
+<form method="POST" class="container mx-auto bg-blue-200 shadow-md rounded px-8 pt-2 pb-4 mb-2 mt-6  divide-gray-200 mb-20">
   {% csrf_token %}
     <div cla>
         <h1 class="mx-auto text-center font-bold text-3xl text-gray-600">Alterar Disciplina</h1>
     </div>
     <div class="mb-4">
       <label for="nome" class="block text-gray-700">Nome:</label>
-      <input value="{{cursos.nome}}" type="text" id="nome" name="nome" class="w-1/2">
+      <input value="{{cursos.nome}}" type="text" id="nome" name="nome" class="w-1/2 rounded p-1">
     </div>
 
       <div class="mb-4">
         <label for="descricao" class="block text-gray-700">Descrição:</label>
-        <input value="{{cursos.descricao}}" type="text" id="descricao" name="descricao" class="w-1/2 p-1"><br>
+        <input value="{{cursos.descricao}}" type="text" id="descricao" name="descricao" class="w-1/2 p-1 rounded"><br>
       </div>
       <div class="mb-4">
         <label for="duracao" class="block text-gray-700">Duração:</label>
-        <input value="{{cursos.duracao}}" type="text" id="duracao" name="duracao" class="w-1/2"><br>
+        <input value="{{cursos.duracao}}" type="text" id="duracao" name="duracao" class="w-1/2 rounded p-1"><br>
       </div>
       <div class="mb-4">
         <label for="coordenador" class="block text-gray-700">Coordenador:</label>
-        <input value="{{cursos.coordenador}}"type="text" id="coordenador" name="coordenador" class="w-1/2"><br>
+        <input value="{{cursos.coordenador}}"type="text" id="coordenador" name="coordenador" class="w-1/2 rounded p-1"><br>
       </div>
       <div class="mb-4">
         <label for="cargahoraria" class="block text-gray-700">Carga Horaria:</label>
-        <input value="{{cursos.carga_horaria}}"type="text" id="cargahoraria" name="carga_horaria" class="w-1/2"><br>
+        <input value="{{cursos.carga_horaria}}"type="text" id="cargahoraria" name="carga_horaria" class="w-1/2 rounded p-1"><br>
       </div>
       <div class="mb-4">
         <label for="departamento" class="block text-gray-700">Departamento:</label>
-        <select name="departamento" id="departamento" class="w-1/2 bg-white py-1 px-3">
+        <select name="departamento" id="departamento" class="w-1/2 bg-white py-1 px-3 rounded">
             {% for departamento in departamentos %}
                 <option value="{{ departamento.id }}">{{ departamento.nome }}</option>
             {% endfor %}

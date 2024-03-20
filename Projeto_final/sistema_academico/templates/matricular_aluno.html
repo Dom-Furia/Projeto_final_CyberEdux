@@ -3,14 +3,14 @@
 
 
 <div class="mt-10">
-    <form method="post" class="bg-gray-200 shadow-md rounded px-8 pt-6 pb-8 mb-4 divide-gray-200">
+    <form method="post" class="container mx-auto bg-blue-200 shadow-md rounded px-8 pt-2 pb-4 mb-10 mt-6  divide-gray-200 rounded-lg">
         {% csrf_token %}
         <div class="flex justify-center mt-4 mb-10">
             <h1 class="font-bold text-3xl text-gray-600">Matricular aluno</h1>
         </div>
         <div class="mb-5">
-            <label for="aluno" class="block text-gray-700">Selecione o Aluno:</label>
-            <select name="aluno" id="aluno" class="w-1/2 bg-white py-1 px-3">
+            <label for="aluno" class="block text-gray-700 ">Selecione o Aluno:</label>
+            <select name="aluno" id="aluno" class="w-1/2 bg-white py-1 px-3 rounded">
                 {% for aluno in alunos %}
                     <option value="{{ aluno.id }}">{{ aluno.nome }}</option>
                 {% endfor %}
@@ -18,7 +18,7 @@
         </div>
         <div>
         <label for="curso" class="block text-gray-700">Selecione o Curso:</label>
-        <select name="curso" id="curso" class="w-1/2 bg-white py-1 px-3">
+        <select name="curso" id="curso" class="w-1/2 bg-white py-1 px-3 rounded">
             {% for curso in cursos %}
                 <option value="{{ curso.id }}">{{ curso.nome }}</option>
             {% endfor %}

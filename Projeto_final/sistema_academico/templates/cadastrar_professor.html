@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<form method="POST" class="bg-gray-200 shadow-md rounded px-8 pt-6 pb-8 mb-4 mt-4 ">
+<form method="POST" class="container mx-auto bg-blue-200 shadow-md rounded px-8 pt-6 pb-8 mb-4 mt-6  divide-gray-200">
     {% csrf_token %}
     <div>
         <div class="flex justify-center p-4 mb-4">
@@ -64,8 +64,8 @@
     </div>
 </form>
 
-<table class="min-w-full divide-y divide-gray-200 bg-white shadow overflow-hidden sm:rounded-lg">
-    <thead class="bg-gray-200 text-center">
+<table class="container mx-auto divide-y divide-gray-200 bg-white shadow overflow-hidden sm:rounded-lg mb-5">
+    <thead class="bg-yellow-400 text-center">
       <tr>
         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nome</th>
         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">E-mail</th>
