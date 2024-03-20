@@ -14,5 +14,7 @@ urlpatterns = [
     path('cadastrar_professor/',views.cadastrar_Professor, name='cadastrar_professor'),
     path('cadastrar_departamento/',views.Cadastrar_departamento, name='cadastrar_departamento'),
     path('ver_aluno/<int:id>/', views.ver_aluno, name='ver_aluno'),
+    path('editar_curso/<int:id>/', views.edite_curso, name='edite_curso'),
+    path('deletar_curso/<int:id>/', views.delete_curso, name='delete_curso'),
 
 ]

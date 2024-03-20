@@ -28,6 +28,7 @@ def editar_aluno(request, id):
     return render(request, 'editar_aluno.html', {'alunos': alunos})
 
 def adicionar_aluno(request):
+    alunos_cursos = Aluno.objects.prefetch_related('matriculas__curso').all()
     if request.method == "POST":
         nome = request.POST.get('nome')
         matricula = request.POST.get('matricula')
@@ -37,8 +38,8 @@ def adicionar_aluno(request):
         email = request.POST.get('email')
         data_nascimento = request.POST.get('data_nascimento')
         Aluno.objects.create(nome=nome, matricula=matricula, telefone=telefone,cpf=cpf,endereco=endereco,data_nascimento=data_nascimento,email=email)
-        return redirect('home')
-    return render(request, 'adicionar_aluno.html')
+        return redirect('adicionar_aluno')
+    return render(request, 'adicionar_aluno.html', {'alunos_cursos': alunos_cursos})
 
 def criar_curso(request):
     cursos = Curso.objects.all()
@@ -51,7 +52,6 @@ def criar_curso(request):
         else:
             try:
                 cursos.create(nome=nome, descricao=descricao,duracao=50,coordenador='Felipe',carga_horaria=120)
-                cursos.save()
                 messages.success(request, 'Curso criado com sucesso!')
                 return redirect('criar_curso')
             except Exception as e:
@@ -142,5 +142,33 @@ def Cadastrar_departamento(request):
                 return redirect('cadastrar_departamento')
             
     return render(request, 'cadastrar_departamento.html', {'departamentos':departamentos})
+
+def edite_curso(request, id):
+    cursos = Curso.objects.get(id=id)
+    departamentos = Departamento.objects.all()
+    if request.method == "POST":
+        cursos.nome = request.POST.get('nome', cursos.nome)
+        cursos.descricao = request.POST.get('descricao', cursos.descricao)
+        cursos.duracao = request.POST.get('duracao', cursos.duracao)
+        cursos.coordenador = request.POST.get('coordenador', cursos.coordenador)
+        cursos.carga_horaria = request.POST.get('carga_horaria', cursos.carga_horaria)
+        dp_id = request.POST.get('departamento', cursos.departamento)
+        departamento = Departamento.objects.get(id=dp_id)
+        cursos.departamento = departamento
+        try:
+            cursos.save()
+            messages.success(request, 'Curso salvo com sucesso!')
+        except Exception as e:
+            messages.error(request, f'Ocorreu um erro ao salvar o curso: {str(e)}')
+        return redirect('edite_curso', id=id)
+    return render(request, 'editar_curso.html', {'cursos': cursos, 'departamentos':departamentos})
+
+def delete_curso(request, id):
+    cursos = Curso.objects.get(id=id)
+    if request.method == "POST":
+        cursos.delete()
+        return redirect('criar_curso')
+    return render(request, 'delete_curso.html', {'cursos': cursos})
+
 
 
