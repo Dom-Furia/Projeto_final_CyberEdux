@@ -37,8 +37,8 @@ class Professor(models.Model):
 class Curso(models.Model):
     nome = models.CharField(max_length=100)
     descricao = models.TextField()
-    duracao = models.IntegerField()
-    coordenador = models.CharField(max_length=100)
+    nota = models.FloatField(null=True)
+    situacao = models.CharField(max_length=10, null=True)
     carga_horaria = models.IntegerField()
     departamento = models.ForeignKey(Departamento, on_delete=models.CASCADE,default=1)
 

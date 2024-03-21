@@ -3,6 +3,7 @@ from django.shortcuts import redirect
 from django.http import HttpResponse
 from .models import Aluno, Curso, Departamento, Professor, Matricula
 from django.contrib import messages
+from datetime import datetime
 
 def home(request):
     alunos_cursos = Aluno.objects.prefetch_related('matriculas__curso').all()
@@ -37,7 +38,8 @@ def adicionar_aluno(request):
         endereco = request.POST.get('endereco')
         email = request.POST.get('email')
         data_nascimento = request.POST.get('data_nascimento')
-        Aluno.objects.create(nome=nome, matricula=matricula, telefone=telefone,cpf=cpf,endereco=endereco,data_nascimento=data_nascimento,email=email)
+        data_formatada = datetime.strptime(data_nascimento, '%d/%m/%Y').strftime('%Y-%m-%d')
+        Aluno.objects.create(nome=nome, matricula=matricula, telefone=telefone,cpf=cpf,endereco=endereco,data_nascimento=data_formatada,email=email)
         return redirect('adicionar_aluno')
     return render(request, 'adicionar_aluno.html', {'alunos_cursos': alunos_cursos})
 
@@ -168,6 +170,36 @@ def delete_curso(request, id):
         cursos.delete()
         return redirect('criar_curso')
     return render(request, 'delete_curso.html', {'cursos': cursos})
+
+
+from django.shortcuts import render, redirect
+from .models import Matricula
+
+def delete_disciplina(request, id, curso_id):
+
+    if request.method == 'POST':
+        try:
+            # Exclua a disciplina
+            matricula = Matricula.objects.get(aluno_id=id, curso_id=curso_id)
+            matricula.delete()
+            # Redirecione para a página de confirmação após a exclusão
+            return redirect('ver_aluno', id=id)
+        except Matricula.DoesNotExist:
+            pass
+    else:
+        try:
+            # Renderize a página de confirmação
+            disciplina = Matricula.objects.get(aluno_id=id, curso_id=curso_id)
+            return render(request, 'delete_disciplina.html', {'disciplina': disciplina})
+        except Matricula.DoesNotExist:
+            pass
+    # Se algo der errado ou a requisição não for POST, redirecione ou renderize uma página de erro
+    return redirect('pagina_de_erro')
+
+        
+
+
+
 
 
 
