@@ -1,18 +1,26 @@
 {% extends 'base.html' %}
 {% block content %}
   
-<form method="POST" class="container mx-auto bg-blue-200 shadow-md rounded px-8 pt-2 pb-4 mb-4 mt-6  divide-gray-400 mb-10">
+<form method="POST" class="container mx-auto bg-gray-200 shadow-md rounded px-4 pt-4 pb-6 mb-6  divide-gray-200 mt-5">
       {% csrf_token %}
         <div class="flex justify-center">
-          <h1 class="mx-auto text-black font-bold mb-4 p-4 text-3xl text-gray-600">Cadastrar Curso</h1>
+          <h1 class="mx-auto text-black font-bold mb-4 p-4 text-3xl text-gray-600">Cadastrar Disciplina</h1>
         </div>
-      <label for="nome" class="block text-gray-700">Nome:</label>
-        <input type="text" id="nome" name="nome" class="w-1/2"><br>
-        <label for="descricao" class="block text-gray-700">Descrição:</label>
-        <input type="text" id="descricao" name="descricao" class="w-1/2"><br>
-        <!--<label for="coordenador">Coordenador:</label>
-        <input type="text" id="coordenador" name="coordenador"><br>
-        -->
+      <label for="nome" class="block text-gray-700 font-bold">Nome:</label>
+        <input type="text" id="nome" name="nome" class="border border-gray-300 p-1 rounded-md transition-colors duration-300 ease-in-out focus:outline-none focus:border-blue-500 hover:border-blue-500 w-1/2">
+
+        <label for="descricao"class="block text-gray-700 font-bold">Descrição:</label>
+        <input type="message" id="descricao" name="descricao" class="border border-gray-300 p-1 rounded-md transition-colors duration-300 ease-in-out focus:outline-none focus:border-blue-500 hover:border-blue-500 w-1/2">
+
+        <label for="cargahoraria"class="block text-gray-700 font-bold">Carga Horaria:</label>
+        <input type="number" class="border border-gray-300 p-1 rounded-md transition-colors duration-300 ease-in-out focus:outline-none focus:border-blue-500 hover:border-blue-500 w-1/2" id="cargahoraria" name="carga_horaria" >
+        <label for="departamento" class="block text-gray-700">Curso</label>
+        <select name="departamento" id="departamento" class="w-1/2 bg-white py-1 px-3 rounded">
+            {% for departamentos in departamento %}
+                <option value="{{departamentos.id}}">{{ departamentos.nome }}</option>
+            {% endfor %}
+        </select>
+        
       <div class="flex p-2 space-x-10 mt-10">
           <div>
             <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">

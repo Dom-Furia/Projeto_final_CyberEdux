@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
-<br>
+
 <div class="container flex justify-center items-center h-screen ">
-    <div class="flex justify-center bg-blue-300 rounded-lg px-10"> 
+    <div class="flex justify-center bg-gray-300 rounded-lg px-10"> 
         <form action="{% url 'delete_disciplina' disciplina.aluno.id disciplina.curso.id %}" method="POST" class=" justify-center-items-center ">
           {% csrf_token %}
           <div class="flex space-x-2">

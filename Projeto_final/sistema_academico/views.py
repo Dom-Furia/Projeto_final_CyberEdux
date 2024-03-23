@@ -4,13 +4,19 @@ from django.http import HttpResponse
 from .models import Aluno, Curso, Departamento, Professor, Matricula
 from django.contrib import messages
 from datetime import datetime
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
+from django.contrib.auth import login as login_django
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout as logout_django
 
+@login_required(login_url="/")
 def home(request):
     alunos_cursos = Aluno.objects.prefetch_related('matriculas__curso').all()
     return render(request, 'home.html', {'alunos_cursos': alunos_cursos})
 
 
-
+@login_required(login_url="/")
 def delete_aluno(request, id):
     alunos = Aluno.objects.get(id=id)
     if request.method == "POST":
@@ -18,6 +24,7 @@ def delete_aluno(request, id):
         return redirect('home')
     return render(request, 'delete_aluno.html', {'alunos': alunos})
 
+@login_required(login_url="/")
 def editar_aluno(request, id):
     alunos = Aluno.objects.get(id=id)
     if request.method == "POST":
@@ -28,6 +35,7 @@ def editar_aluno(request, id):
         return redirect('home')
     return render(request, 'editar_aluno.html', {'alunos': alunos})
 
+@login_required(login_url="/")
 def adicionar_aluno(request):
     alunos_cursos = Aluno.objects.prefetch_related('matriculas__curso').all()
     if request.method == "POST":
@@ -43,37 +51,41 @@ def adicionar_aluno(request):
         return redirect('adicionar_aluno')
     return render(request, 'adicionar_aluno.html', {'alunos_cursos': alunos_cursos})
 
+@login_required(login_url="/")
 def criar_curso(request):
     cursos = Curso.objects.all()
+    departamento = Departamento.objects.all()
     if request.method == "POST":
         nome = request.POST.get('nome')
         descricao = request.POST.get('descricao')
+        carga_horaria = request.POST.get('carga_horaria')
+        departamento_id = request.POST.get('departamento')
+        dp = Departamento.objects.get(id=departamento_id)
         if cursos.filter(nome=nome).exists():
             messages.error(request, 'Já existe um curso com este nome.')
             return redirect('criar_curso')
         else:
             try:
-                cursos.create(nome=nome, descricao=descricao,duracao=50,coordenador='Felipe',carga_horaria=120)
+                cursos.create(nome=nome, descricao=descricao,carga_horaria=carga_horaria, departamento = dep)
                 messages.success(request, 'Curso criado com sucesso!')
                 return redirect('criar_curso')
             except Exception as e:
                 messages.error(request, f'Erro ao criar curso: {e}')
                 return redirect('criar_curso')
-            
-    return render(request, 'criar_curso.html', {'cursos':cursos})
+    return render(request, 'criar_curso.html', {'cursos':cursos, 'departamento':departamento})
 
+@login_required(login_url="/")
 def ver_aluno(request, id):
     aluno = Aluno.objects.prefetch_related('matriculas__curso').get(id=id)
     return render(request, 'ver_aluno.html', {'aluno': aluno})
 
-
-
+@login_required(login_url="/")
 def listar_cursos_e_departamentos(request):
     todos_os_cursos = Curso.objects.all()
     todos_os_departamentos = Departamento.objects.all()
     return render(request, 'lista_cursos_departamentos.html', {'cursos': todos_os_cursos, 'departamentos': todos_os_departamentos})
 
-
+@login_required(login_url="/")
 def matricular_aluno(request):
     if request.method == 'POST':
         aluno_id = request.POST.get('aluno')
@@ -100,13 +112,17 @@ def matricular_aluno(request):
         cursos = Curso.objects.all()
         return render(request, 'matricular_aluno.html', {'alunos': alunos, 'cursos': cursos})
 
+@login_required(login_url="/")
 def cadastrar_Professor(request):
     professor = Professor.objects.all()
     departamentos = Departamento.objects.all()
+    curso = Curso.objects.all()
     if request.method == "POST":
         nome = request.POST.get('nome')
+        email = request.POST.get('email')
         disciplinas = request.POST.get('disciplinas')
         telefone = request.POST.get('telefone')
+        endereco = request.POST.get('endereco')
         departamento_id = request.POST.get('departamento')
         dep = Departamento.objects.get(id=departamento_id)
         print(departamento_id)
@@ -115,14 +131,15 @@ def cadastrar_Professor(request):
             return redirect('cadastrar_professor')
         else:
             try:
-                professor.create(nome=nome,email = 'curso@cyberedux.com.br',telefone = telefone, data_contratacao='2024-1-15', salario = 4000.78, disciplina_ministrada = disciplinas,endereco = 'Rua B', departamento = dep)
+                professor.create(nome=nome,email = email,telefone = telefone,  disciplina_ministrada = disciplinas,endereco = endereco, departamento = dep)
                 messages.success(request, 'Professor adicionado com sucesso!')
                 return redirect('cadastrar_professor')
             except Exception as e:
                 messages.error(request, f'Erro ao criar professor: {e}')
                 return redirect('cadastrar_professor')     
-    return render(request, 'cadastrar_professor.html', {'professor':professor, 'departamentos':departamentos})
+    return render(request, 'cadastrar_professor.html', {'professor':professor, 'departamentos':departamentos, 'curso':curso})
 
+@login_required(login_url="/")
 def Cadastrar_departamento(request):
     departamentos = Departamento.objects.all()
     if request.method == "POST":
@@ -144,6 +161,7 @@ def Cadastrar_departamento(request):
             
     return render(request, 'cadastrar_departamento.html', {'departamentos':departamentos})
 
+@login_required(login_url="/")
 def edite_curso(request, id):
     cursos = Curso.objects.get(id=id)
     departamentos = Departamento.objects.all()
@@ -164,6 +182,7 @@ def edite_curso(request, id):
         return redirect('edite_curso', id=id)
     return render(request, 'editar_curso.html', {'cursos': cursos, 'departamentos':departamentos})
 
+@login_required(login_url="/")
 def delete_curso(request, id):
     cursos = Curso.objects.get(id=id)
     if request.method == "POST":
@@ -171,10 +190,7 @@ def delete_curso(request, id):
         return redirect('criar_curso')
     return render(request, 'delete_curso.html', {'cursos': cursos})
 
-
-from django.shortcuts import render, redirect
-from .models import Matricula
-
+@login_required(login_url="/")
 def delete_disciplina(request, id, curso_id):
 
     if request.method == 'POST':
@@ -193,8 +209,25 @@ def delete_disciplina(request, id, curso_id):
             return render(request, 'delete_disciplina.html', {'disciplina': disciplina})
         except Matricula.DoesNotExist:
             pass
-    # Se algo der errado ou a requisição não for POST, redirecione ou renderize uma página de erro
     return redirect('pagina_de_erro')
+
+def login(request):
+    if request.method == 'GET':
+        return render(request, 'login.html')
+    else:
+        nome = request.POST.get('nome')
+        senha = request.POST.get('senha')
+        user = authenticate(username = nome, password = senha)
+        if user:
+            login_django(request, user)
+            return redirect ('home')
+        else:
+            return HttpResponse('Dados invalidos')
+
+def logout(request):
+    logout_django(request)
+    return redirect('login')
+
 
         
 

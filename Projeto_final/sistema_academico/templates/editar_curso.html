@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<form method="POST" class="container mx-auto bg-blue-200 shadow-md rounded px-8 pt-2 pb-4 mb-2 mt-6  divide-gray-200 mb-20">
+<form method="POST" class="container mx-auto bg-gray-300 shadow-md rounded px-4 pt-4 pb-6 mb-6  divide-gray-100 mt-5">
   {% csrf_token %}
     <div cla>
         <h1 class="mx-auto text-center font-bold text-3xl text-gray-600">Alterar Disciplina</h1>
@@ -16,19 +16,11 @@
         <input value="{{cursos.descricao}}" type="text" id="descricao" name="descricao" class="w-1/2 p-1 rounded"><br>
       </div>
       <div class="mb-4">
-        <label for="duracao" class="block text-gray-700">Duração:</label>
-        <input value="{{cursos.duracao}}" type="text" id="duracao" name="duracao" class="w-1/2 rounded p-1"><br>
-      </div>
-      <div class="mb-4">
-        <label for="coordenador" class="block text-gray-700">Coordenador:</label>
-        <input value="{{cursos.coordenador}}"type="text" id="coordenador" name="coordenador" class="w-1/2 rounded p-1"><br>
-      </div>
-      <div class="mb-4">
         <label for="cargahoraria" class="block text-gray-700">Carga Horaria:</label>
-        <input value="{{cursos.carga_horaria}}"type="text" id="cargahoraria" name="carga_horaria" class="w-1/2 rounded p-1"><br>
+        <input value="{{cursos.carga_horaria}}"type="number" id="cargahoraria" name="carga_horaria" class="w-1/2 rounded p-1"><br>
       </div>
       <div class="mb-4">
-        <label for="departamento" class="block text-gray-700">Departamento:</label>
+        <label for="departamento" class="block text-gray-700">Curso</label>
         <select name="departamento" id="departamento" class="w-1/2 bg-white py-1 px-3 rounded">
             {% for departamento in departamentos %}
                 <option value="{{ departamento.id }}">{{ departamento.nome }}</option>

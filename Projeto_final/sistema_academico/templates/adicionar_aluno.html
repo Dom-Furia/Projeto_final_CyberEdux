@@ -4,51 +4,51 @@
 <div class="container mx-auto bg-yellow-300 mt-10 mb-0 p-3 shadow-md overflow-hidden sm:rounded">
     <h1 class="text-center">Cadastra</h1>
 </div>
-<form method="POST" class="container mx-auto bg-gray-100 shadow-md rounded px-8 pt-4 pb-6 mb-6  divide-gray-200">
+<form method="POST" class="container mx-auto bg-gray-100 shadow-md rounded px-4 pt-4 pb-6 mb-6  divide-gray-200">
   {% csrf_token %}
 
         <div class="mb-4">
           <label for="nome" class="block text-gray-700 font-bold">Nome:</label>
-          <input type="text" class="border border-gray-300 p-1 rounded-md transition-colors duration-300 ease-in-out focus:outline-none focus:border-blue-500 hover:border-blue-500 w-1/2"  id="nome" name="nome" ">
+          <input type="text" class="border border-gray-300 p-1 rounded-md transition-colors duration-300 ease-in-out focus:outline-none focus:border-blue-500 hover:border-blue-500 w-1/2"  id="nome" name="nome">
         </div>
 
           <div class="mb-4">
             <label for="matricula" class="block text-gray-700 font-bold">Matrícula:</label>
-            <input type="text" id="matricula" name="matricula" class="w-1/2 rounded p-1"><br>
+            <input type="text" id="matricula" name="matricula" class="border border-gray-300 p-1 rounded-md transition-colors duration-300 ease-in-out focus:outline-none focus:border-blue-500 hover:border-blue-500 w-1/2">
           </div>
 
           <div class="mb-4">
             <label for="telefone" class="block text-gray-700 font-bold">Telefone:</label>
-            <input type="text" id="telefone" name="telefone" class="w-1/2 rounded p-1"><br>
+            <input type="text" id="telefone" name="telefone" class="border border-gray-300 p-1 rounded-md transition-colors duration-300 ease-in-out focus:outline-none focus:border-blue-500 hover:border-blue-500 w-1/2">
           </div>
 
           <div class="mb-4">
             <label for="cpf" class="block text-gray-700 font-bold">CPF:</label>
-            <input type="text" id="cpf" name="cpf" class="w-1/2 rounded p-1"><br>
+            <input type="text" id="cpf" name="cpf" class="border border-gray-300 p-1 rounded-md transition-colors duration-300 ease-in-out focus:outline-none focus:border-blue-500 hover:border-blue-500 w-1/2">
           </div>
 
           <div class="mb-4">
             <label for="email" class="block text-gray-700 font-bold">E-mail:</label>
-            <input type="text" id="email" name="email" class="w-1/2 rounded p-1 hover:border-blue-700"><br>
+            <input type="email" id="email" name="email" class="border border-gray-300 p-1 rounded-md transition-colors duration-300 ease-in-out focus:outline-none focus:border-blue-500 hover:border-blue-500 w-1/2">
           </div>
 
           <div class="mb-4">
             <label for="data_nascimento" class="block text-gray-700 font-bold">Data de nascimento:</label>
-            <input type="text" id="data_nascimento" name="data_nascimento"  class="w-1/2 rounded p-1"><br>
+            <input type="date" id="data_nascimento" name="data_nascimento"  class="border border-gray-300 p-1 rounded-md transition-colors duration-300 ease-in-out focus:outline-none focus:border-blue-500 hover:border-blue-500 w-1/2">
           </div>
           <div class="mb-4">
             <label for="endereco" class="block text-gray-700 font-bold">Endereço:</label>
-            <input type="text" id="endereco" name="endereco" class="w-1/2 rounded p-1"><br>
+            <input type="text" id="endereco" name="endereco" class="border border-gray-300 p-1 rounded-md transition-colors duration-300 ease-in-out focus:outline-none focus:border-blue-500 hover:border-blue-500 w-1/2">
           </div>
                   
         <div class="flex items-center p-2 space-x-10">
             <div>
-                <button type="submit" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-                  Adicionar
+                <button type="submit" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-8 rounded">
+                  Salvar
                 </button>
             </div>
             <div>
-                <a href="{% url 'home' %}" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-10 rounded ">Voltar   
+                <a href="{% url 'home' %}" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-9 rounded ">Voltar   
                 </a>
             </div>
         </div>

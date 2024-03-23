@@ -12,7 +12,24 @@
         <div class="bg-gradient-to-b from-blue-700 via-blue-400 to-blue-600 font-bold p-4 shadow-md">
             <img src="{% static 'img/sga.png' %}" alt="Descriçã da Imagem" width="200px" >
             <h1 class="text-white">Sistema de Gestão Academica</h1>
-        </div>        
+                {% if user.is_authenticated %}
+                    <div class="flex justify-end mx-5 space-x-5">
+                        <div class="flex space-x-4 mx-10">
+                            <h1 class="text-white font-bold text-3xl">Ola,<h2 class="text-white font-bold text-3xl">{{user.username}}!</h2> </h1>
+                        </div>
+                        <div>
+                            <a href="{% url 'logout' %}" ><img src="{% static 'img/icon5.svg' %}" alt="user" width="45px">
+                            </a>
+                        </div>
+                        <div>
+                            <a href="{% url 'home' %}"><img src="{% static 'img/icon6.svg' %}" alt="user" width="45px">
+                              
+                            </a>
+                        </div>
+                    </div>
+                {% endif %}        
+        </div>
+            
     </section>
     <div class="flex-grow">
         {% block content %}

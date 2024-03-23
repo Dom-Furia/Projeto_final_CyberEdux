@@ -3,30 +3,46 @@
 <br>
 <div>
     
-    <form method="post" class="container mx-auto bg-blue-200 shadow-md rounded px-8 pt-2 pb-4 mb-2 mt-6  divide-gray-200">
+<form method="post" class="container mx-auto bg-gray-300 shadow-md rounded px-4 pt-4 pb-6 mb-6  divide-gray-100">
         {% csrf_token %}
         <div class="flex justify-center items-center p-4 font-bold">
           <h1 class="">Editar Aluno</h1>
         </div>
         <div class="mb-4">
           <label for="nome"  class="block text-gray-700">Nome:</label>
-          <input value="{{alunos.nome}}" type="text" name="nome" class="w-1/2">
+          <input value="{{alunos.nome}}" type="text" name="nome" class="border border-gray-300 p-1 rounded-md transition-colors duration-300 ease-in-out focus:outline-none focus:border-blue-500 hover:border-blue-500 w-1/2">
         </div>
       <div class="mb-4">
         <label for="matricula" class="block text-gray-700">Matricula:</label>
-        <input value="{{alunos.matricula}}" type="text" name="matricula" class="w-1/2">
+        <input value="{{alunos.matricula}}" type="text" name="matricula" class="border border-gray-300 p-1 rounded-md transition-colors duration-300 ease-in-out focus:outline-none focus:border-blue-500 hover:border-blue-500 w-1/2">
       </div>
         <div class="mb-4">
           <label for="telefone" class="block text-gray-700">Telefone:</label>
-          <input value="{{alunos.telefone}}" type="text" name="telefone" class="w-1/2">
+          <input value="{{alunos.telefone}}" type="text" name="telefone" class="border border-gray-300 p-1 rounded-md transition-colors duration-300 ease-in-out focus:outline-none focus:border-blue-500 hover:border-blue-500 w-1/2">
         </div>
-        <div class="mb-4 space-x-5">
-          <button type="submit" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Salvar</button>
-          <a href="{% url 'home' %}" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded inline-block">Voltar   
-          </a>
+        <div class="mb-4">
+          <label for="cpf" class="block text-gray-700">CPF:</label>
+          <input value="{{alunos.cpf}}" type="number" name="cpf" class="border border-gray-300 p-1 rounded-md transition-colors duration-300 ease-in-out focus:outline-none focus:border-blue-500 hover:border-blue-500 w-1/2">
         </div>
-        
-    </form>
+        <div class="mb-4">
+          <label for="email" class="block text-gray-700">E-mail:</label>
+          <input value="{{alunos.email}}" type="email" name="email" class="border border-gray-300 p-1 rounded-md transition-colors duration-300 ease-in-out focus:outline-none focus:border-blue-500 hover:border-blue-500 w-1/2">
+        </div>
+        <div class="mb-4">
+          <label for="data" class="block text-gray-700">Data de nascimento:</label>
+          <input value="{{alunos.data_nascimento}}" type="date" name="data_nascimento" class="border border-gray-300 p-1 rounded-md transition-colors duration-300 ease-in-out focus:outline-none focus:border-blue-500 hover:border-blue-500 w-1/2">
+        </div>
+        <div class="mb-4">
+          <label for="endereco" class="block text-gray-700">Endereço:</label>
+          <input value="{{alunos.endereco}}" type="text" name="endereco" class="border border-gray-300 p-1 rounded-md transition-colors duration-300 ease-in-out focus:outline-none focus:border-blue-500 hover:border-blue-500 w-1/2">
+        </div>
+          <div class="mt-6 mb-4 space-x-5 ">
+            <button type="submit" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Salvar</button>
+            <a href="{% url 'adicionar_aluno' %}" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded inline-block">Voltar   
+            </a>
+          </div>
+    
+</form>
     
   
 </div>
