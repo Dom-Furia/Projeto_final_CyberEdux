@@ -1,13 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
-<br>
-<div>
-    
-<form method="post" class="container mx-auto bg-gray-300 shadow-md rounded px-4 pt-4 pb-6 mb-6  divide-gray-100">
+
+<div class="container mx-auto bg-yellow-300 mt-10 mb-0 p-3 shadow-md overflow-hidden sm:rounded">
+  <h1 class="text-center font-bold text-2xl">Alterar Aluno</h1>
+</div>    
+<form method="post" class="container mx-auto bg-gray-100 shadow-md rounded px-4 pt-4 pb-6 mb-6  divide-gray-200">
         {% csrf_token %}
-        <div class="flex justify-center items-center p-4 font-bold">
-          <h1 class="">Editar Aluno</h1>
-        </div>
+        
         <div class="mb-4">
           <label for="nome"  class="block text-gray-700">Nome:</label>
           <input value="{{alunos.nome}}" type="text" name="nome" class="border border-gray-300 p-1 rounded-md transition-colors duration-300 ease-in-out focus:outline-none focus:border-blue-500 hover:border-blue-500 w-1/2">

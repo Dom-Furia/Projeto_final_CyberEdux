@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container mx-auto bg-yellow-300 mt-10 mb-0 p-3 shadow-md overflow-hidden sm:rounded">
+  <h1 class="text-center font-bold text-2xl">Alterar Professor</h1>
+</div>
+
+<form method="POST" class="container mx-auto bg-gray-100 shadow-md rounded px-4 pt-4 pb-6 mb-6  divide-gray-200">
+    {% csrf_token %}
+    <div>
+        
+        <div class="mb-4">
+            <label for="nome" class="block text-gray-700">Nome:</label>
+            <input type="text" value="{{professor.nome}}" id="nome" name="nome" class="border border-gray-300 p-1 rounded-md transition-colors duration-300 ease-in-out focus:outline-none focus:border-blue-500 hover:border-blue-500 w-1/2">
+        </div>
+        <div class="mb-4">
+            <label for="email" class="block text-gray-700">E-mail:</label>
+            <input type="email" value="{{professor.email}}" id="nome" name="email" class="border border-gray-300 p-1 rounded-md transition-colors duration-300 ease-in-out focus:outline-none focus:border-blue-500 hover:border-blue-500 w-1/2">
+        </div>
+        <div class="mb-4">
+            <label for="telefone" class="block text-gray-700">Telefone:</label>
+            <input type="text" value="{{professor.telefone}}" id="telefone" name="telefone" class="border border-gray-300 p-1 rounded-md transition-colors duration-300 ease-in-out focus:outline-none focus:border-blue-500 hover:border-blue-500 w-1/2">
+        </div>
+        <div class="mb-4">
+            <label for="datacontratacao" class="block text-gray-700">Data de Contratação:</label>
+            <input type="date" value="{{professor.data_contratacao}}" id="cadatacontratacao" name="cadata_contratacao" class="border border-gray-300 p-1 rounded-md transition-colors duration-300 ease-in-out focus:outline-none focus:border-blue-500 hover:border-blue-500 w-1/2">
+        </div>
+        <div class="mb-4">
+            <label for="salario" class="block text-gray-700">Salario:</label>
+            <input type="number" value="{{professor.salario}}" id="telefone" name="salario" class="border border-gray-300 p-1 rounded-md transition-colors duration-300 ease-in-out focus:outline-none focus:border-blue-500 hover:border-blue-500 w-1/2"><br>
+        </div>
+        
+        <div class="mb-4">
+            <label for="disciplinas" class="block text-gray-700">Disciplina Ministrada:</label>
+            <select name="disciplinas"  id="disciplinas" class="bg-white border border-gray-300 p-1 rounded-md transition-colors duration-300 ease-in-out focus:outline-none focus:border-blue-500 hover:border-blue-500 w-1/2">
+                {% for cursos in curso %}
+                    <option value="{{ cursos.nome }}">{{cursos.nome}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-4">
+            <label for="endereco" class="block text-gray-700">Endereço:</label>
+            <input type="text" value="{{professor.endereco}}" id="endereco" name="endereco" class="border border-gray-300 p-1 rounded-md transition-colors duration-300 ease-in-out focus:outline-none focus:border-blue-500 hover:border-blue-500 w-1/2"><br>
+        </div>
+        <div class="mb-4">
+            <label for="departamento" class="block text-gray-700">Selecione o curso:</label>
+            <select name="departamento" id="departamento" class="bg-white border border-gray-300 p-1 rounded-md transition-colors duration-300 ease-in-out focus:outline-none focus:border-blue-500 hover:border-blue-500 w-1/2">
+                {% for departamento in departamentos %}
+                    <option value="{{ departamento.id }}">{{ departamento.nome }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        
+        <div>
+            {% if messages %}
+          <ul class="messages">
+              {% for message in messages %}
+                  {% if message.tags == 'error' %}
+                      <li class="text-red-500 font-bold">{{ message }}</li>
+                  {% elif message.tags == 'success' %}
+                      <li class="text-green-500 font-bold">{{ message }}</li>
+                  {% elif message.tags == 'warning' %}
+                      <li class="text-blue-500 font-bold">{{ message }}</li>
+                  {% elif message.tags == 'info' %}
+                      <li class="text-yellow-500 font-bold">{{ message }}</li>
+                  {% else %}
+                      <li>{{ message }}</li>
+                  {% endif %}
+              {% endfor %}
+          </ul>
+          {% endif %}
+        </div>
+
+        <div class="flex py-2 space-x-10 mt-2">
+            <div>
+                <button type="submit" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                    Salvar
+                </button>
+            </div>
+
+            <div class="flex">
+                <a href="{% url 'home' %}" class=" text-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-10 rounded ">Voltar   
+                </a>
+            </div>            
+        </div>
+    
+    </div>
+</form>
+    
+  
+</div>
+  
+{% endblock %}

@@ -21,7 +21,7 @@ def delete_aluno(request, id):
     alunos = Aluno.objects.get(id=id)
     if request.method == "POST":
         alunos.delete()
-        return redirect('home')
+        return redirect('adicionar_aluno')
     return render(request, 'delete_aluno.html', {'alunos': alunos})
 
 @login_required(login_url="/")
@@ -32,12 +32,13 @@ def editar_aluno(request, id):
         alunos.matricula = request.POST.get('matricula')
         alunos.telefone = request.POST.get('telefone')
         alunos.save()
-        return redirect('home')
+        return redirect('adicionar_aluno')
     return render(request, 'editar_aluno.html', {'alunos': alunos})
 
 @login_required(login_url="/")
 def adicionar_aluno(request):
     alunos_cursos = Aluno.objects.prefetch_related('matriculas__curso').all()
+    alunos = Aluno.objects.all()
     if request.method == "POST":
         nome = request.POST.get('nome')
         matricula = request.POST.get('matricula')
@@ -46,9 +47,25 @@ def adicionar_aluno(request):
         endereco = request.POST.get('endereco')
         email = request.POST.get('email')
         data_nascimento = request.POST.get('data_nascimento')
-        data_formatada = datetime.strptime(data_nascimento, '%d/%m/%Y').strftime('%Y-%m-%d')
-        Aluno.objects.create(nome=nome, matricula=matricula, telefone=telefone,cpf=cpf,endereco=endereco,data_nascimento=data_formatada,email=email)
-        return redirect('adicionar_aluno')
+        cpf = ''.join(filter(str.isdigit, cpf))
+        print(cpf)
+        
+        # Verificando se o CPF possui 11 dígitos
+        if not cpf or len(cpf) > 11:
+            messages.error(request, 'CPF inválido. Por favor, insira um CPF válido')
+            return redirect('adicionar_aluno')
+        else:
+            if alunos.filter(cpf=cpf).exists():
+                messages.error(request, 'Já existe um usuario cadastrado com esses dados!')
+                return redirect('adicionar_aluno')
+            else:
+                try:
+                    alunos.create(nome=nome, matricula=matricula, telefone=telefone,cpf=cpf,endereco=endereco,data_nascimento=data_nascimento,email=email)
+                    messages.success(request, 'Aluno criado com sucesso!')
+                    return redirect('adicionar_aluno')
+                except Exception as e:
+                    messages.error(request, f'Erro ao criar aluno: {e}')
+                    return redirect('adicionar_aluno')
     return render(request, 'adicionar_aluno.html', {'alunos_cursos': alunos_cursos})
 
 @login_required(login_url="/")
@@ -66,7 +83,7 @@ def criar_curso(request):
             return redirect('criar_curso')
         else:
             try:
-                cursos.create(nome=nome, descricao=descricao,carga_horaria=carga_horaria, departamento = dep)
+                cursos.create(nome=nome, descricao=descricao,carga_horaria=carga_horaria, departamento = dp)
                 messages.success(request, 'Curso criado com sucesso!')
                 return redirect('criar_curso')
             except Exception as e:
@@ -123,6 +140,7 @@ def cadastrar_Professor(request):
         disciplinas = request.POST.get('disciplinas')
         telefone = request.POST.get('telefone')
         endereco = request.POST.get('endereco')
+        data_contratacao = request.POST.get('data_contratacao')
         departamento_id = request.POST.get('departamento')
         dep = Departamento.objects.get(id=departamento_id)
         print(departamento_id)
@@ -131,7 +149,7 @@ def cadastrar_Professor(request):
             return redirect('cadastrar_professor')
         else:
             try:
-                professor.create(nome=nome,email = email,telefone = telefone,  disciplina_ministrada = disciplinas,endereco = endereco, departamento = dep)
+                professor.create(nome=nome,email = email,telefone = telefone,  disciplina_ministrada = disciplinas,endereco = endereco, departamento = dep, data_contratacao = data_contratacao)
                 messages.success(request, 'Professor adicionado com sucesso!')
                 return redirect('cadastrar_professor')
             except Exception as e:
@@ -148,7 +166,7 @@ def Cadastrar_departamento(request):
         telefone = request.POST['telefone']
         email = request.POST['email']
         if departamentos.filter(nome=nome).exists():
-            messages.error(request, 'Já existe um departamento com este nome.')
+            messages.error(request, 'Já existe um Curso com este nome.')
             return redirect('cadastrar_departamento')
         else:
             try:
@@ -227,6 +245,61 @@ def login(request):
 def logout(request):
     logout_django(request)
     return redirect('login')
+
+@login_required(login_url="/")
+def delete_professor(request, id):
+    if request.method == "POST":
+        professores = Professor.objects.get(id=id)
+        professores.delete()
+        return redirect('cadastrar_professor')
+    return render(request, 'delete_professor.html')
+
+@login_required(login_url="/")
+def editar_Professor(request,id):
+    departamentos = Departamento.objects.all()
+    curso = Curso.objects.all()
+    professor = Professor.objects.get(id=id)
+    if request.method == "POST":
+        professor.nome = request.POST.get('nome')
+        professor.email = request.POST.get('email')
+        professor.disciplina_ministrada = request.POST.get('disciplinas')
+        professor.telefone = request.POST.get('telefone')
+        professor.endereco = request.POST.get('endereco')
+        professor.data_contratacao = request.POST.get('data_contratacao')
+        professor.salario = request.POST.get('salario')
+        departamento_id = request.POST.get('departamento')
+        professor.departamento = Departamento.objects.get(id=departamento_id)
+        try:
+            professor.save()
+            messages.success(request, 'Professor salvo com sucesso!')
+        except Exception as e:
+            messages.error(request, f'Ocorreu um erro ao salvar o curso: {str(e)}')
+            return redirect('editar_professor', id=id)
+    return render(request, 'editar_professor.html', {'professor':professor, 'departamentos':departamentos, 'curso':curso})
+
+@login_required(login_url="/")
+def delete_departamento(request, id):
+    departamento = Departamento.objects.get(id=id)
+    if request.method == "POST":
+        departamento.delete()
+        return redirect('cadastrar_departamento')
+    return render(request, 'delete_departamento.html', {'departamento': departamento})
+
+@login_required(login_url="/")
+def editar_departamento(request,id):
+    departamento = Departamento.objects.get(id=id)
+    if request.method == "POST":
+        departamento.nome = request.POST.get('nome')
+        departamento.descricao = request.POST.get('descricao')
+        departamento.email = request.POST.get('email')
+        departamento.telefone = request.POST.get('telefone')     
+        try:
+            departamento.save()
+            messages.success(request, 'Curso salvo com sucesso!')
+        except Exception as e:
+            messages.error(request, f'Ocorreu um erro ao salvar o curso: {str(e)}')
+            return redirect('editar_departamento',id=id)
+    return render(request, 'editar_departamento.html', {'departamento':departamento})
 
 
         

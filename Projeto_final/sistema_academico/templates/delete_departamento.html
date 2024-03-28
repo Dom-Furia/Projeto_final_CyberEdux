@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container flex justify-center items-center h-screen ">
+    <div class="flex justify-center bg-gray-300 rounded-lg px-10"> 
+        <form method="POST" class=" justify-center-items-center ">
+          {% csrf_token %}
+          <div class="flex space-x-2">
+            <p class="font-bold font-medium  text-center mt-5 mb-5 ">Tem certeza de que deseja deletar o curso  <p class="text-red-500 mt-5 mb-5 font-bold font-medium ">{{ departamento.nome }} ?</p></p>
+          </div>
+          <div class="space-x-5 text-center mt-5 mb-5">
+              <button type="submit" class="bg-red-700 hover:bg-red-600 text-white font-bold py-2 px-10 rounded">Sim</button>
+              <a href="{% url 'cadastrar_departamento' %}" class="bg-blue-700 hover:bg-blue-600 text-white font-bold py-3 px-10 rounded mb-5">Não</a>
+          </div>
+        </form>
+      </div>
+</div>
+
+  
+{% endblock %}

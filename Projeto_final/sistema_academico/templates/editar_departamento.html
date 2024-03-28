@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container mx-auto bg-yellow-300 mt-10 mb-0 p-3 shadow-md overflow-hidden sm:rounded">
+  <h1 class="text-center font-bold text-2xl">Alterar Professor</h1>
+</div>
+
+<form method="POST" class="container mx-auto bg-gray-100 shadow-md rounded px-4 pt-4 pb-6 mb-6  divide-gray-200">
+    {% csrf_token %}
+    <div>
+        
+        <div class="mb-4">
+            <label for="nome" class="block text-gray-700">Nome:</label>
+            <input type="text" value="{{departamento.nome}}" id="nome" name="nome" class="border border-gray-300 p-1 rounded-md transition-colors duration-300 ease-in-out focus:outline-none focus:border-blue-500 hover:border-blue-500 w-1/2">
+        </div>
+        <div class="mb-4">
+            <label for="descricao" class="block text-gray-700">Descrição:</label>
+            <input type="text" value="{{departamento.descricao}}" id="descricao" name="descricao" class="border border-gray-300 p-1 rounded-md transition-colors duration-300 ease-in-out focus:outline-none focus:border-blue-500 hover:border-blue-500 w-1/2">
+        </div>
+        <div class="mb-4">
+            <label for="email" class="block text-gray-700">E-mail:</label>
+            <input type="email" value="{{departamento.email}}" id="nome" name="email" class="border border-gray-300 p-1 rounded-md transition-colors duration-300 ease-in-out focus:outline-none focus:border-blue-500 hover:border-blue-500 w-1/2">
+        </div>
+        <div class="mb-4">
+            <label for="telefone" class="block text-gray-700">Telefone:</label>
+            <input type="text" value="{{departamento.telefone}}" id="telefone" name="telefone" class="border border-gray-300 p-1 rounded-md transition-colors duration-300 ease-in-out focus:outline-none focus:border-blue-500 hover:border-blue-500 w-1/2">
+        </div>
+
+        <div>
+            {% if messages %}
+          <ul class="messages">
+              {% for message in messages %}
+                  {% if message.tags == 'error' %}
+                      <li class="text-red-500 font-bold">{{ message }}</li>
+                  {% elif message.tags == 'success' %}
+                      <li class="text-green-500 font-bold">{{ message }}</li>
+                  {% elif message.tags == 'warning' %}
+                      <li class="text-blue-500 font-bold">{{ message }}</li>
+                  {% elif message.tags == 'info' %}
+                      <li class="text-yellow-500 font-bold">{{ message }}</li>
+                  {% else %}
+                      <li>{{ message }}</li>
+                  {% endif %}
+              {% endfor %}
+          </ul>
+          {% endif %}
+        </div>
+
+        <div class="flex py-2 space-x-10 mt-2">
+            <div>
+                <button type="submit" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                    Salvar
+                </button>
+            </div>
+
+            <div class="flex">
+                <a href="{% url 'cadastrar_departamento' %}" class=" text-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-10 rounded ">Voltar   
+                </a>
+            </div>            
+        </div>
+    
+    </div>
+</form>
+  
+{% endblock %}

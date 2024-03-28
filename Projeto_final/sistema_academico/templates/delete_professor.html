@@ -6,11 +6,11 @@
     <form method="POST" class=" justify-center-items-center ">
       {% csrf_token %}
       <div class="flex space-x-2">
-        <p class="font-bold font-medium  text-center mt-5 mb-10">Tem certeza de que deseja excluir a disciplina<p class="text-red-500 mt-5 mb-5 font-bold font-medium ">{{ cursos.nome }} ?</p></p>
+        <p class="font-bold font-medium  text-center mt-5 mb-10">Tem certeza de que deseja excluir professor <p class="text-red-500 mt-5 mb-5 font-bold font-medium ">{{ professores.nome }} ?</p></p>
       </div>
       <div class="space-x-5 text-center mt-1 mb-5">
           <button type="submit" class="bg-red-700 hover:bg-red-600 text-white font-bold py-2 px-10 rounded">Sim</button>
-          <a href="{% url 'criar_curso' %}" class="bg-blue-700 hover:bg-blue-600 text-white font-bold py-3 px-10 rounded mb-5">Não</a>
+          <a href="{% url 'cadastrar_professor' %}" class="bg-blue-700 hover:bg-blue-600 text-white font-bold py-3 px-10 rounded mb-5">Não</a>
       </div>
     </form>
   </div> 

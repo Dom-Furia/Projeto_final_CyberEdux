@@ -1,31 +1,28 @@
 {% extends 'base.html' %}
 {% block content %}
-  
-<form method="POST" class="container mx-auto bg-blue-200 shadow-md rounded px-8 pt-2 pb-4 mb-2 mt-6  divide-gray-400 rounded-medium">
+
+<div class="container mx-auto bg-yellow-300 mt-10 mb-0 p-3 shadow-md overflow-hidden sm:rounded">
+    <h1 class="text-center font-bold text-2xl">Cadastrar Curso</h1>
+  </div>
+<form method="POST"class="container mx-auto bg-gray-200 shadow-md rounded px-4 pt-4 pb-6 mb-6  divide-gray-200">
     {% csrf_token %}
     <div>
-        <div class="flex justify-center">
-            <h1 class="mx-auto text-black font-bold mb-4">Cadastrar Departamento</h1>
+        
+        <div>
+            <label for="nome" class="block text-gray-700 font-bold">Nome:</label>
+            <input type="text" id="nome" name="nome" class="border border-gray-300 p-1 rounded-md transition-colors duration-300 ease-in-out focus:outline-none focus:border-blue-500 hover:border-blue-500 w-1/2"><br>
         </div>
         <div>
-            <label for="id" class="block text-gray-700">ID:</label>
-            <input type="text" id="id" name="id" class="w-1/2 rounded p-1"><br>
+            <label for="descricao" class="block text-gray-700 font-bold">Descrição:</label>
+            <input type="text" id="descricao" name="descricao" class="border border-gray-300 p-1 rounded-md transition-colors duration-300 ease-in-out focus:outline-none focus:border-blue-500 hover:border-blue-500 w-1/2"><br>
         </div>
         <div>
-            <label for="nome" class="block text-gray-700">Nome:</label>
-            <input type="text" id="nome" name="nome" class="w-1/2 rounded p-1"><br>
+            <label for="telefone" class="block text-gray-700 font-bold">Telefone:</label>
+            <input type="text" id="telefone" name="telefone" class="border border-gray-300 p-1 rounded-md transition-colors duration-300 ease-in-out focus:outline-none focus:border-blue-500 hover:border-blue-500 w-1/2"><br>
         </div>
         <div>
-            <label for="descricao" class="block text-gray-700">Descrição:</label>
-            <input type="text" id="descricao" name="descricao" class="w-1/2 rounded p-1"><br>
-        </div>
-        <div>
-            <label for="telefone" class="block text-gray-700">Telefone:</label>
-            <input type="text" id="telefone" name="telefone" class="w-1/2 rounded p-1"><br>
-        </div>
-        <div>
-            <label for="email" class="block text-gray-700">E-mail:</label>
-            <input type="text" id="email" name="email" class="w-1/2 rounded p-1"><br>
+            <label for="email" class="block text-gray-700 font-bold">E-mail:</label>
+            <input type="text" id="email" name="email" class="border border-gray-300 p-1 rounded-md transition-colors duration-300 ease-in-out focus:outline-none focus:border-blue-500 hover:border-blue-500 w-1/2"><br>
         </div>    
         <div class="flex mt-10 space-x-10">
             <div>
@@ -62,51 +59,55 @@
     </div>
 </form>
 
-<table class="container mx-auto divide-y divide-gray-300 bg-white shadow overflow-hidden sm:rounded-lg mb-6">
-    <thead class="bg-yellow-400">
-        <tr>
-            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
-            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nome</th>
-            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">Descrição</th>
-            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">Telefone</th>
-            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">E-mail</th>
-            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">Ações</th>
-        </tr>
-    </thead>
-    <tbody class="bg-white divide-y divide-gray-200">
-        {% for departamento in departamentos %}
-        <tr>
-            <td class="px-6 py-4 whitespace-nowrap">{{ departamento.id}}</td>
-            <td class="px-6 py-4 whitespace-nowrap">{{ departamento.nome }}</td>
-            <td class="px-6 py-4 whitespace-nowrap text-center">{{ departamento.descricao }}</td> 
-            <td class="px-6 py-4 whitespace-nowrap text-center">{{ departamento.telefone }}</td>
-            <td class="px-6 py-4 whitespace-nowrap text-center">{{ departamento.email }}</td>
-            <td class="mt-10 mb-5 flex justify-center items-rigth space-x-8 text-center">  
-                <div>
-                    <a href="#" class="text-red-600 hover:text-red-400 ">
-                      <svg  class="w-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
-                      </svg>
-                    </a>
-                </div>
-                <div>
-                    <a href="#" class="text-green-600 hover:text-green-400">
-                      <svg class="w-7 h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
-                      </svg>  
-                    </a>
-                </div>
-            </td>        
-        </tr>
-        {% empty %}
-        <tr>
-            <td colspan="5" class="px-6 py-4 whitespace-nowrap">Nenhum departamento encontrado.</td>
-        </tr>
-        {% endfor %}
-    </tbody>
+<div class="container mx-auto">
+    <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-300 bg-white shadow overflow-hidden sm:rounded-lg mb-10">
+            <thead class="bg-yellow-400">
+                <tr class="shadow">
+                    <th class="px-2 py-3 text-left text-xs tracking-wider " colspan="5"> <h1 class="text-2xl text-center">Lista de Cursos</h1>
+                    </th>
+                </tr>
+
+                <tr>
+                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nome</th>
+                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">Descrição</th>
+                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">Telefone</th>
+                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">E-mail</th>
+                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">Ações</th>
+                </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-300">
+                {% for departamento in departamentos %}
+                <tr>
+                    <td class="px-6 py-4 whitespace-nowrap">{{ departamento.nome }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-center">{{ departamento.descricao }}</td> 
+                    <td class="px-6 py-4 whitespace-nowrap text-center">{{ departamento.telefone }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-center">{{ departamento.email }}</td>
+                    <td class="mt-10 mb-5 flex justify-center items-rigth space-x-8 text-center">  
+                        <div>
+                            <a href="{% url 'delete_departamento' departamento.id %}" class="text-red-600 hover:text-red-400 ">
+                            <svg  class="w-6 h-6 sm:w-7 sm:h-7"  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                            </svg>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="{% url 'editar_departamento' departamento.id %}" class="text-green-600 hover:text-green-400">
+                            <svg class="w-6 h-6 sm:w-7 sm:h-7"  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+                            </svg>  
+                            </a>
+                        </div>
+                    </td>        
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5" class="px-6 py-4 whitespace-nowrap">Nenhum curso encontrado.</td>
+                </tr>
+                {% endfor %}
+            </tbody>      
+        </table>
     </div>
-    
 </div>
-</table>
 
 {% endblock %}

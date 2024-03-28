@@ -18,6 +18,10 @@ urlpatterns = [
     path('deletar_curso/<int:id>/', views.delete_curso, name='delete_curso'),
     path('deletar_disciplina/<int:id>/<int:curso_id>/', views.delete_disciplina, name='delete_disciplina'),
     path('', views.login, name = 'login'),
-    path('logout/', views.logout, name = 'logout')
+    path('logout/', views.logout, name = 'logout'),
+    path('delete_professor/<int:id>/', views.delete_professor, name = 'delete_professor'),
+    path('editar_professor/<int:id>/', views.editar_Professor, name = 'editar_professor'),
+    path('delete_departamento/<int:id>/', views.delete_departamento, name = 'delete_departamento'),
+    path('editar_departamento/<int:id>/', views.editar_departamento, name = 'editar_departamento')
     
 ]

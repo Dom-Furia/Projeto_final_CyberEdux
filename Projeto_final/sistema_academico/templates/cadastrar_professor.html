@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<form method="POST" class="container mx-auto bg-gray-200 shadow-md rounded px-4 pt-4 pb-6 mb-6  divide-gray-200 mt-5">
+<div class="container mx-auto bg-yellow-300 mt-10 mb-0 p-3 shadow-md overflow-hidden sm:rounded">
+    <h1 class="mx-auto text-black text-center font-bold text-2xl ">Cadastrar Professor</h1>
+</div>
+<form method="POST" class="container mx-auto bg-gray-100 shadow-md rounded px-4 pt-4 pb-6 mb-6  divide-gray-200">
     {% csrf_token %}
     <div>
-        <div class="flex justify-center p-4 mb-4">
-            <h1 class="mx-auto text-black text-center font-bold text-3xl text-gray-600">Cadastrar Professor</h1>
-        </div>
+        
         <div class="mb-4">
             <label for="nome" class="block text-gray-700">Nome:</label>
             <input type="text" id="nome" name="nome" class="border border-gray-300 p-1 rounded-md transition-colors duration-300 ease-in-out focus:outline-none focus:border-blue-500 hover:border-blue-500 w-1/2">
@@ -17,7 +18,15 @@
         </div>
         <div class="mb-4">
             <label for="telefone" class="block text-gray-700">Telefone:</label>
-            <input type="text" id="telefone" name="telefone" class="border border-gray-300 p-1 rounded-md transition-colors duration-300 ease-in-out focus:outline-none focus:border-blue-500 hover:border-blue-500 w-1/2"><br>
+            <input type="text" id="telefone" name="telefone" class="border border-gray-300 p-1 rounded-md transition-colors duration-300 ease-in-out focus:outline-none focus:border-blue-500 hover:border-blue-500 w-1/2">
+        </div>
+        <div class="mb-4">
+            <label for="datacontratacao" class="block text-gray-700">Data de Contratação:</label>
+            <input type="date" id="cadatacontratacao" name="cadata_contratacao" class="border border-gray-300 p-1 rounded-md transition-colors duration-300 ease-in-out focus:outline-none focus:border-blue-500 hover:border-blue-500 w-1/2">
+        </div>
+        <div class="mb-4">
+            <label for="salario" class="block text-gray-700">Salario:</label>
+            <input type="number" id="telefone" name="telefone" class="border border-gray-300 p-1 rounded-md transition-colors duration-300 ease-in-out focus:outline-none focus:border-blue-500 hover:border-blue-500 w-1/2"><br>
         </div>
         
         <div class="mb-4">
@@ -27,6 +36,10 @@
                     <option value="{{ cursos.nome }}">{{cursos.nome}}</option>
                 {% endfor %}
             </select>
+        </div>
+        <div class="mb-4">
+            <label for="endereco" class="block text-gray-700">Endereço:</label>
+            <input type="text" id="endereco" name="endereco" class="border border-gray-300 p-1 rounded-md transition-colors duration-300 ease-in-out focus:outline-none focus:border-blue-500 hover:border-blue-500 w-1/2"><br>
         </div>
         <div class="mb-4">
             <label for="departamento" class="block text-gray-700">Selecione o curso:</label>
@@ -74,53 +87,53 @@
     </div>
 </form>
 
-<table class="container mx-auto divide-y divide-gray-200 bg-white shadow overflow-hidden sm:rounded-lg mb-5">
-    <thead class="bg-yellow-400 text-center">
-      <tr>
-        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nome</th>
-        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">E-mail</th>
-        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">Telefone</th>
-        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">Disciplina</th>
-        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">Curso</th>
-        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">Ações</th>
-    </tr>
-    </thead>
-    <tbody class="bg-white divide-y divide-gray-200">
-      {% for professores in professor %}
-        <tr>
-          <td class="px-6 py-4 whitespace-nowrap ">{{ professores.nome }}</td>
-          <td class="px-6 py-4 whitespace-nowrap text-center">{{ professores.email }}</td>
-          <td class="px-6 py-4 whitespace-nowrap ">{{ professores.telefone }}</td>
-          <td class="px-6 py-4 whitespace-nowrap ">{{ professores.disciplina_ministrada }}</td> 
-          <td class="px-6 py-4 whitespace-nowrap text-center">{{ professores.departamento }}</td>
-          <td class="mt-10 mb-5 flex justify-center items-rigth space-x-8 text-center">  
-            <div>
-                <a href="#" class="text-red-600 hover:text-red-400 ">
-                  <svg  class="w-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
-                  </svg>
-                </a>
-            </div>
-            <div>
-                <a href="#" class="text-green-600 hover:text-green-400">
-                  <svg class="w-7 h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
-                  </svg>  
-                </a>
-            </div>
-        </td>    
-        </tr>
-      {% empty %}
-        <tr>
-          <td colspan="5" class="px-6 py-4 whitespace-nowrap">Nenhum professor encontrado.</td>
-        </tr>
-      {% endfor %}
-        
-      
-    </tbody>
+<div class="container mx-auto">
+    <div class="overflow-x-auto">
+        <table  class="min-w-full divide-y divide-gray-200 bg-white shadow overflow-hidden sm:rounded-lg mb-6">
+            <thead class="bg-yellow-400 text-center">
+              <tr>
+                <th class="px-6 py-3 sm:px-4 sm:py-2 text-xs sm:text-sm font-medium text-gray-500 uppercase tracking-wider">Nome</th>
+                <th class="px-6 py-3 sm:px-4 sm:py-2 text-xs sm:text-sm font-medium text-gray-500 uppercase tracking-wider">E-mail</th>
+                <th class="px-6 py-3 sm:px-4 sm:py-2 text-xs sm:text-sm font-medium text-gray-500 uppercase tracking-wider">Telefone</th>
+                <th class="px-6 py-3 sm:px-4 sm:py-2 text-xs sm:text-sm font-medium text-gray-500 uppercase tracking-wider">Salario</th>
+                <th class="px-6 py-3 sm:px-4 sm:py-2 text-xs sm:text-sm font-medium text-gray-500 uppercase tracking-wider">Disciplina</th>
+                <th class="px-6 py-3 sm:px-4 sm:py-2 text-xs sm:text-sm font-medium text-gray-500 uppercase tracking-wider">Curso</th>
+                <th class="px-6 py-3 sm:px-4 sm:py-2 text-xs sm:text-sm font-medium text-gray-500 uppercase tracking-wider">Ações</th>
+            </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+              {% for professores in professor %}
+                <tr>
+                  <td class="px-6 py-6 sm:px-6 sm:py-4 whitespace-nowrap">{{ professores.nome }}</td>
+                  <td class="px-6 py-6 sm:px-6 sm:py-4 whitespace-nowrap">{{ professores.email }}</td>
+                  <td class="px-6 py-6 sm:px-6 sm:py-4 whitespace-nowrap">{{ professores.telefone }}</td>
+                  <td class="px-6 py-6 sm:px-6 sm:py-4 whitespace-nowrap">{{ professores.salario }}</td>
+                  <td class="px-6 py-6 sm:px-6 sm:py-4 whitespace-nowrap">{{ professores.disciplina_ministrada }}</td> 
+                  <td class="px-6 py-6 sm:px-6 sm:py-4 whitespace-nowrap">{{ professores.departamento }}</td>
+                  <td class="px-6 py-4 sm:px-4 sm:py-2 whitespace-nowrap flex justify-center items-center space-x-6 sm:space-x-6">  
+                        <a href="{% url 'delete_professor' professores.id %}" class="text-red-600 hover:text-red-400 ">
+                          <svg  class="w-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                          </svg>
+                        </a>
+                        <a href="{% url 'editar_professor' professores.id %}" class="text-green-600 hover:text-green-400">
+                          <svg class="w-7 h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+                          </svg>  
+                        </a>
+                </td>    
+                </tr>
+              {% empty %}
+                <tr>
+                  <td colspan="5" class="px-6 py-4 whitespace-nowrap">Nenhum professor encontrado.</td>
+                </tr>
+              {% endfor %}
+                
+            </tbody>
+        </table>
     </div>
-       
-    </div>
-</table>
+</div>
+    
+
 
 {% endblock %}
