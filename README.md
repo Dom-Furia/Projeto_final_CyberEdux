@@ -15,7 +15,14 @@
 <img src="img/logo.png" width="150px">
 
 <!-- Substitua o seguinte parágrafo por um resumo do seu projeto: -->
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Um sistema de gestão acadêmica é uma plataforma tecnológica projetada para facilitar a administração e o gerenciamento das atividades relacionadas às instituições de ensino, como escolas, faculdades e universidades. Aqui estão algumas das principais funcionalidades que esse sistema de gestão acadêmica oferece:
+<ol>
+  <li>Registro de Alunos</li>
+  <li>Gestão de Professores</li>
+  <li>Gestão de Cursos e Disciplinas</li>
+  <li>Controle de Matrículas</li>
+  <li>Acesso Seguro</li>
+</ol>
 
 ## Documentação
 
