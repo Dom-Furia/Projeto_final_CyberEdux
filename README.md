@@ -12,10 +12,10 @@
 # SGA - Sistema de Gestão Academica
 
 <!-- Substitua a seguinte imagem por uma logo do seu projeto -->
-<img src="img/img1.png" width="150px">
+<img src="img/img1.PNG" width="150px">
 
 <!-- Substitua o seguinte parágrafo por um resumo do seu projeto: -->
-Um sistema de gestão acadêmica é uma plataforma tecnológica projetada para facilitar a administração e o gerenciamento das atividades relacionadas às instituições de ensino, como escolas, faculdades e universidades. Aqui estão algumas das principais funcionalidades que esse sistema de gestão acadêmica oferece:
+O sistema de gestão acadêmica é uma plataforma tecnológica projetada para facilitar a administração e o gerenciamento das atividades relacionadas às instituições de ensino, como escolas, faculdades e universidades. Aqui estão algumas das principais funcionalidades que esse sistema de gestão acadêmica oferece:
 <ol>
   <li>Registro de Alunos</li>
   <li>Gestão de Professores</li>
@@ -29,9 +29,3 @@ Um sistema de gestão acadêmica é uma plataforma tecnológica projetada para f
 * [Documentação (para desenvolvedores)](DOCUMENTACAO.md)
 * [Manual (para usuários)](MANUAL.md)
 
-## Sobre o autor
-
-<!-- Coloque seu nome, uma foto sua e uma pequena bio sobre você na seguinte tabela: -->
-|  |  |
-|:-------------:|:------------------------------------------------------------:|
-|  <img src="img/profilepic.png" width="150px"></br> **Nome do Autor** | Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. |
