@@ -14,4 +14,4 @@
 
 ## Modelagem de banco de dados
 
-<img src="img/img2.PNG" width="200px">
+<img src="img/img2.PNG" width="800px">
