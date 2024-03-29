@@ -12,12 +12,6 @@
 
 
 
-
-
-
-
-
-
 ## Modelagem de banco de dados
 
-Coloque aqui a modelagem do banco de dados desenvolvido no projeto. Você pode colocar diagramas conceituais e lógicos, ou até mesmo descrever textualmente o que cada uma das tabelas e atributos representam. 
+<img src="img/img2.PNG" width="200px">
