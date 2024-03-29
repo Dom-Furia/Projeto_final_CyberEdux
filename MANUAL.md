@@ -1,3 +1,3 @@
 # Instruções de uso
 
-<a href="caminho/para/seu/arquivo.pdf" target="_blank">Abrir PDF</a>
+<a href="img/manual.pdf" target="_blank">Clique aqui para abrir o arquivo em PDF</a>
